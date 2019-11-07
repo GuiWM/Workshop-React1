@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello world</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Hello world!</h1>
+    
+    <div>
+        <form method="POST">
+            <span>E-mail</span>
+            <input type="email" name="email" class="email">
+            <span>Senha</span>
+            <input type="password" name="senha" class="senha">
+            <button class="button">Login</button>
+        </form>
+    </div>
+    <p id="msg"></p>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(e){
+            e.preventDefault()
+            var email = this.querySelector(".email").value
+            var senha = this.querySelector(".senha").value
+
+            var msg = document.getElementById("msg")
+            msg.innerHTML = ""
+
+            if(email == "") {
+                document.getElementById("msg").innerHTML = "email vazio"        
+            }
+            if(senha == "") {
+                document.getElementById("msg").innerHTML += " <br> senha vazio"         
+            } else {
+                if (email == "guilherme@hotmail.com" && senha == "123") {
+                    document.getElementById("msg").innerHTML += " login realizado"         
+                } else {
+                    document.getElementById("msg").innerHTML += " login nao realizado"         
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

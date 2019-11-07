@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .carrousel {
+            overflow: hidden;
+            position: relative;
+            height: 500px;
+        }
+        .carrousel .carrousel-body section img{
+            width: 500px;
+            height: 500px;
+        }
+        .carrousel .carrousel-body section {
+            position: absolute;
+            left: 2000px;
+            transition: 500ms all;
+            /*display: none;*/
+        }
+        .carrousel .carrousel-body section.active {
+            left: 0;
+        }
+        .carrousel .carrousel-body section.prev {
+            left: -2000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="carrousel">
+        <div class="carrousel-controle">
+            <a href="" id="anterior">Anterior</a>
+            <a href="" id="proximo">Próximo</a>
+        </div>
+        <div class="carrousel-body">
+            <section id='P0' class="active">
+                <img src="https://inct.furg.br/images/Marilton.gif" alt="">
+            </section>
+            <section id='P1'>
+                <img class="toto" src="https://s04.video.glbimg.com/x720/7831367.jpg" alt="">
+            </section>
+            <section id='P2'>
+                <img src="https://rafaeltorchelsen.files.wordpress.com/2010/10/eu.png" alt="">
+            </section>    
+        </div>
+        <script>
+            var position = 0 
+            function carrousel(state) {
+                document.querySelector(".carrousel .carrousel-body section.active").className = 'prev'
+                var total = document.querySelectorAll(".carrousel .carrousel-body section").length;
+                if (state == 0) {
+                    if (position >= total-1) {
+                        position = 0
+                    } else {
+                        position++
+                    }
+                }
+                else {
+                    if (position > 0) {
+                        position--
+                    } else {
+                        position = 0
+                    } 
+                }
+                document.querySelector(".carrousel .carrousel-body section#P"+position).className = 'active'
+            }
+            setInterval(function() {
+                carrousel(0)
+            }, 5000)
+            document.getElementById("proximo").addEventListener("click", function(e) {
+                e.preventDefault()
+                carrousel(0)
+            })
+            document.getElementById("anterior").addEventListener("click", function(e) {
+                e.preventDefault()
+                carrousel(1)
+            })
+        </script>
+    </div>
+</body>
+</html>
